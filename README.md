@@ -2,6 +2,8 @@
 
 A simple, mobile-first quiz application built with Angular 21.
 
+🚀 **[Live Demo](https://hkeio.github.io/quiz-game/)**
+
 ## Features
 
 - ✅ Define questions with multiple answers (single or multiple correct answers)
