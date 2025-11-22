@@ -30,6 +30,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/quiz-game/",
               "budgets": [
                 {
                   "type": "initial",
