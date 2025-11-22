@@ -1,0 +1,83 @@
+<div class="quiz-container">
+  @if (!showSummary()) {
+  <!-- Quiz Progress -->
+  <div class="progress-section">
+    <div class="progress-text">Question {{ currentIndex() + 1 }} of {{ totalQuestions() }}</div>
+    <div class="progress-bar">
+      <div
+        class="progress-fill"
+        [style.width.%]="((currentIndex() + 1) / totalQuestions()) * 100"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Question -->
+  <div class="question-section">
+    <h2 class="question-text">{{ currentQuestion().text }}</h2>
+
+    <!-- Answers -->
+    <div class="answers-section">
+      @for (answer of currentQuestion().answers; track answer.id) {
+      <button
+        class="answer-button"
+        [class.selected]="isSelected(answer.id)"
+        (click)="toggleAnswer(answer.id)"
+      >
+        <span class="answer-checkbox">
+          @if (isSelected(answer.id)) {
+          <span class="checkmark">✓</span>
+          }
+        </span>
+        <span class="answer-text">{{ answer.text }}</span>
+      </button>
+      }
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navigation-section">
+    @if (!isFirstQuestion()) {
+    <button class="btn btn-secondary" (click)="previous()">Previous</button>
+    } @if (selectedAnswers().size > 0) {
+    <button class="btn btn-primary" (click)="submitAndNext()">
+      {{ isLastQuestion() ? 'Finish' : 'Next' }}
+    </button>
+    }
+  </div>
+  } @else {
+  <!-- Summary -->
+  <div class="summary-section">
+    <h2 class="summary-title">Quiz Complete!</h2>
+
+    <div class="summary-stats">
+      <div class="stat">
+        <span class="stat-value">{{ correctCount() }}</span>
+        <span class="stat-label">Correct</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">{{ incorrectCount() }}</span>
+        <span class="stat-label">Incorrect</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">{{ totalQuestions() }}</span>
+        <span class="stat-label">Total</span>
+      </div>
+    </div>
+
+    <div class="results-list">
+      @for (result of results(); track $index) {
+      <div
+        class="result-item"
+        [class.correct]="result.isCorrect"
+        [class.incorrect]="!result.isCorrect"
+      >
+        <span class="result-icon">{{ result.isCorrect ? '✓' : '✗' }}</span>
+        <span class="result-text">{{ result.questionText }}</span>
+      </div>
+      }
+    </div>
+
+    <button class="btn btn-primary btn-full" (click)="restartQuiz()">Restart Quiz</button>
+  </div>
+  }
+</div>
