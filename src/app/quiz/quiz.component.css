@@ -2,6 +2,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 1rem;
+  padding-bottom: 5rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,7 +37,7 @@
 /* Question Section */
 .question-section {
   flex: 1;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .question-text {
@@ -109,10 +110,20 @@
 
 /* Navigation Section */
 .navigation-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  z-index: 100;
 }
 
 .btn {
